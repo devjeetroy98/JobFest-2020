@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style2.css">
+    <title>Personal Details || JobFest </title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">JobFest</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto" style="margin-right: 200px;">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/user/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/user/jobs">Jobs</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Settings
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <center>
+                  <form action="/api/user/logout" method="POST">
+                    <button type="submit" class="btn btn-warning">Logout</button>           
+                  </form>
+                </center>
+              </div>
+            </li>
+          </ul>
+          <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form> -->
+        </div>
+      </nav>
+      <div class="profileform">
+        <!-- <h1>Welcome <%= user.username %></h1> -->
+        <!-- <h2>Your email id is: <%= user.email %></h2> -->
+        <form action="/api/user/submit" method="POST">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="<%= user.email %>">
+            <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputEmail1">Username</label>
+              <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="username" value="<%= user.username  %>">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Date of Birth</label>
+            <input type="date" class="form-control" id="exampleInputUsername" aria-describedby="" name="dob" placeholder="MM/DD/YYYY" value="<%= user.dob ? user.dob : ''  %>">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Year of Graduation</label>
+            <input type="date" class="form-control" id="exampleInputUsername" aria-describedby="" name="yog" placeholder="MM/DD/YYYY" value="<%= user.yog ? user.yog : ''  %>">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Last Degree</label><br>
+            <select name="lastDegree" id="">
+              <option value="<%= user.lastDegree ? user.lastDegree : ''  %>"  selected><%= user.lastDegree ? user.lastDegree : 'Select your degree'  %></option>
+              <option value="B.Tech">B.Tech</option>
+              <option value="B.Sc">B.Sc</option>
+              <option value="B.C.A.">B.C.A.</option>
+              <option value="B.B.A.">B.B.A.</option>
+              <option value="M.Tech">M.Tech</option>
+              <option value="M.Sc">M.Sc</option>
+              <option value="M.C.A.">M.C.A.</option>
+              <option value="M.B.A.">M.B.A.</option>
+              <option value="Diploma">Diploma</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Year of last degree</label>
+            <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="ylastDegree" value="<%= user.ylastDegree ? user.ylastDegree : ''  %>">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Job Role</label>
+            <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="jobrole" value="<%= user.jobrole ? user.jobrole : ''  %>">
+          </div>
+          <div class="form-group" id="mycheck">
+            <label for="exampleInputEmail1">Genre of experience</label><br>
+
+            <% try{ %>
+            <% var l = false %>
+            <% l = user.genre.includes("Front-End Web Development") %>
+            <% }catch{} %>
+            <% var checked = l==true ? "checked": "" %>
+            <input type="checkbox" id="Front-End Web Development" name="genre" value="Front-End Web Development" <%= checked %>>
+            <label for="genre1">Front-End Web Development</label><br>
+
+            <% try{ %>
+            <% var l = false %>
+            <% l = user.genre.includes("Back-End Web Development") %>
+            <% }catch{} %>
+            <% var checked = l==true ? "checked": "" %>
+            <input type="checkbox" id="Back-End Web Development" name="genre" value="Back-End Web Development" <%= checked %>>
+            <label for="genre2">Back-End Web Development</label><br>
+
+            <% try{ %>
+              <% var l = false %>
+              <% l = user.genre.includes("Android Development") %>
+              <% }catch{} %>
+              <% var checked = l==true ? "checked": "" %>
+            <input type="checkbox" id="Android Development" name="genre" value="Android Development" <%= checked %>>
+            <label for="genre3">Android Development</label><br>
+
+            <% try{ %>
+              <% var l = false %>
+              <% l = user.genre.includes("UI/UX Design") %>
+              <% }catch{} %>
+              <% var checked = l==true ? "checked": "" %>
+            <input type="checkbox" id="UI/UX Design" name="genre" value="UI/UX Design" <%= checked %>>
+            <label for="genre4">UI/UX Design</label><br>
+
+            <% try{ %>
+              <% var l = false %>
+              <% l = user.genre.includes("Machine Learning") %>
+              <% }catch{} %>
+              <% var checked = l==true ? "checked": "" %>
+            <input type="checkbox" id="Machine Learning" name="genre" value="Machine Learning"  <%= checked %>>
+            <label for="genre5">Machine Learning</label><br>
+
+            <% try{ %>
+              <% var l = false %>
+              <% l = user.genre.includes("Big Data") %>
+              <% }catch{} %>
+              <% var checked = l==true ? "checked": "" %>
+            <input type="checkbox" id="Big Data" name="genre" value="Big Data" <%= checked %>>
+            <label for="genre6">Big Data</label><br>
+
+            <% try{ %>
+              <% var l = false %>
+              <% l = user.genre.includes("Cloud Computing") %>
+              <% }catch{} %>
+              <% var checked = l==true ? "checked": "" %>
+            <input type="checkbox" id="Cloud Computing" name="genre" value="Cloud Computing" <%= checked %>>
+            <label for="genre7">Cloud Computing</label><br>
+            
+
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Years Of Experience</label><br>
+            <select name="yoe" id="">
+              <option value="<%= user.yoe ? user.yoe : ''  %>" selected><%= user.yoe ? user.yoe : 'Select your experience'  %></option>
+              <option value="Fresher">Fresher</option>
+              <option value="1">1 year of experience</option>
+              <option value="2">2 years of experience</option>
+              <option value="3">3 years of experience</option>
+              <option value="4">4 years of experience</option>
+              <option value="5">5 years of experience</option>
+              <option value="5+">5+ years of experience</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Profile Text</label>
+            <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="textpro" placeholder="Few lines about your work ethic" value="<%= user.textpro %>">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Expected Salary</label>
+            <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="expectSal" placeholder="Your expected salary!" value=<%= user.expectSal %>>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+</body>
+</html>

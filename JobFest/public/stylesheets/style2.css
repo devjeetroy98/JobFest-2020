@@ -1,0 +1,78 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.profileform{
+    width:100%;
+    height: auto;
+    padding-top:50px;
+    padding-bottom:50px;
+    text-align: left;
+    padding-right:750px;
+    padding-left: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+select{
+    width: 550px;
+    height: 40px;
+    border-radius: 5px;
+    color: #696969;
+    padding-left: 10px;
+    font-size: 17px;
+}
+.navbar-brand{
+    font-size: 30px;
+  }
+  .nav-link{
+    font-size: 20px;
+  }
+@media only screen and (min-width: 400px) and (max-width: 650px) {
+    .profileform{
+        width:100%;
+        height: auto;
+        padding-top:50px;
+        padding-bottom:50px;
+        text-align: left;
+        padding-right:50px;
+        padding-left: 50px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+    }
+    .profileform input, select{
+        width: 300px;
+    }
+    #mycheck input{
+        width: 17px;
+    }
+    .navbar-brand{
+        font-size: 25px;
+    }
+    .nav-link{
+        font-size: 15px;
+    }
+}
+@media only screen and (min-width: 651px) and (max-width: 1200px) {
+    .profileform{
+        width:100%;
+        height: auto;
+        padding-top:50px;
+        padding-bottom:50px;
+        text-align: left;
+        padding-right:50px;
+        padding-left: 50px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+    }
+    .profileform input, select{
+        width: 500px;
+    }
+    #mycheck input{
+        width: 17px;
+    }
+    .navbar-brand{
+        font-size: 25px;
+    }
+    .nav-link{
+        font-size: 15px;
+    }
+}

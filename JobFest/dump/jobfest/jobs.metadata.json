@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"jobfest.jobs"}],"uuid":"c910bd4057a246278f1fd6076ca831c5"}

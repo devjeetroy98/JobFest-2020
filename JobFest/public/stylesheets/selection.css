@@ -1,0 +1,53 @@
+body{
+    overflow: hidden;
+}
+.talkingtoemployer{
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 50px;
+}
+.navbar-brand{
+    font-size: 30px;
+}
+.nav-link{
+    font-size: 20px;
+}
+.panel{
+    padding-bottom: 50px;
+    height: 800px;
+    background: linear-gradient(to right, #ADA996,#F2F2F2,#DBDBDB,#EAEAEA);
+}
+.talkingtoemployer > h1{
+    font-size: 50px;
+}
+.talkingtoemployer > p{
+    font-size: 25px;
+}
+@media only screen and (min-width: 300px) and (max-width: 650px) {
+    .talkingtoemployer{
+        margin-left: 40px;
+        margin-right: 40px;
+        margin-top: 50px;
+    }
+    .talkingtoemployer > h1{
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .talkingtoemployer > p{
+        font-size: 15px;
+    }
+}
+@media only screen and (min-width: 651px) and (max-width: 900px) {
+    .talkingtoemployer{
+        margin-left: 120px;
+        margin-right: 120px;
+        margin-top: 50px;
+    }
+    .talkingtoemployer > h1{
+        font-size: 35px;
+        font-weight: bold;
+    }
+    .talkingtoemployer > p{
+        font-size: 20px;
+    }
+}

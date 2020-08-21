@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/selection.css">
+    <title>Panel || JobFest </title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">JobFest</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto" style="margin-right: 200px;">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/user/feeds">Feeds</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Settings
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <center>
+                  <form action="/api/user/logout" method="POST">
+                    <button type="submit" class="btn btn-warning">Logout</button>           
+                  </form>
+                </center>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div style="display: flex;" class="panel">
+        <% if(type=="Admin"){ %>
+          <div class="talkingtoemployer">
+            <h1>Hello!</h1>
+            <p>
+              Do you know that India is going to face a serious financial crisis after this pandemic is done? In the post 
+              pandemic situation, it it expected that few lakhs of people will lose their job. Not only the wage earners but 
+              the engineers, IT professionals and even technicians will also lose their job. If you can provide a job, to 
+              reduce unemployment, please do the same! Thanks!
+            </p>
+            <div style="display: flex;">
+              <form action="/api/user/employer" method="GET">
+                <input type="submit" value="Post a Job" class="btn btn-primary">
+            </form>
+            <form action="/api/user/postedjobs" method="GET">
+              <input type="submit" value="Posted Jobs" class="btn btn-info" style="margin-left: 10px;;">
+            </form>
+            </div>
+          </div>
+        <% }else{ %>
+          <div class="talkingtoemployer">
+            <h1>Hello!</h1>
+            <p>
+              Are you searching for a job my friend? No worries, JobFest has thousands of jobs which can save you from unemployment.
+              You can pickup any job as per your liking and skills. You can enjoy the time working and earning few extra bucks to
+              happily sustain the post pandemic situation.
+            </p>
+            <form action="/api/user/dashboard" method="GET">
+              <input type="submit" value="Find a Job" class="btn btn-warning">
+            </form>
+          </div>
+        <% } %> 
+      </div>
+      <footer style="height: 50px; background-color: #2E4053; text-align: center; padding-top: 10px; border-top-left-radius: 100px;border-top-right-radius: 100px; position: absolute; width: 100%;bottom: 0;" >
+        <style>.heart{color:#e25555;}</style>
+        <p style="color: white; font-size: 20px;">Made with <span class="heart">❤</span> in India</p>
+      </footer>
+</body>
+</html>

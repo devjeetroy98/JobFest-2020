@@ -1,0 +1,15 @@
+.navbar-brand{
+    font-size: 30px;
+}
+.nav-link{
+    font-size: 20px;
+}
+@media only screen and (min-width: 300px) and (max-width: 850px) {
+    .navbar-brand{
+        font-size: 25px;
+    }
+    .nav-link{
+        font-size: 15px;
+    }
+    
+}

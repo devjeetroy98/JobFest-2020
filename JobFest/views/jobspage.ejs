@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <title>Jobs Open || JobFest </title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">JobFest</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto" style="margin-right: 200px;">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/api/user/selection">Dashboard</a>
+              </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Settings
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <center>
+                  <form action="/api/user/logout" method="POST">
+                    <button type="submit" class="btn btn-warning">Logout</button>           
+                  </form>
+                </center>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="searchbox">
+        <form class="form-inline my-2 my-lg-0" action="/api/user/jobs/search/" method="POST">
+          <input class="form-control mr-sm-2" type="search" placeholder="Job Role" aria-label="Search" id="search" name="skillsearch">
+          <button class="btn btn-primary my-2 my-sm-0" type="submit" >Search</button>
+        </form>
+      </div><br>
+      <div style="height: auto;">
+        <% if(!jobs[0]) {%>
+        <center><p style="margin-top: 20px;"><b>No Job avaliable at this moment!</b></p></center>
+        <% } %>
+        <% jobs.forEach(job=>{ %>
+        <div class="box" style="display: flex; margin-top: 5px;">
+            <div style="width: 450px; padding-right: 10px;">
+                <p><b>Job title:</b> <%= job.jobtitle %></p>
+                <p><b>Company:</b> <%= job.company %></p>
+                <p><b>Skills Required:</b> <%= job.skills %></p>
+                <p><b>Qualification Required:</b> <%= job.aq %></p>
+            </div>
+            <div style="margin-left: 30px; padding-right: 20px;;">
+                <p><b>Experience Required:</b> Minimum <%= job.exp %> years</p>
+                <p><b>Salary:</b> <%= job.sal %></p>
+                <p><b>Contact:</b> <%= job.contact %></p>
+            </div>
+            <form action="/api/user/apply/<%= job._id %>" method="POST">
+            <button type="submit" class="btn btn-info" id="apply">Apply</button>
+            </form>
+        </div>    <br>  
+        <% }) %>
+      </div><br><br>
+      <footer style="height: 40px; background-color: #2E4053; text-align: center; padding-top: 10px; border-top-left-radius: 100px;border-top-right-radius: 100px;; width: 100%;bottom: 0; position: fixed;z-index: 999;" >
+        <style>.heart{color:#e25555;}</style>
+        <p style="color: white; font-size: 20px;">Made with <span class="heart">❤</span> in India</p>
+      </footer>
+</body>
+</html>

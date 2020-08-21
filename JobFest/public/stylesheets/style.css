@@ -1,0 +1,242 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  background: url('/images/jobfind.jpg');
+  background-size: cover;
+}
+
+a {
+  color: #00B7FF;
+  font-weight: bold;;
+}
+a:hover{
+  color: white;
+  text-decoration: none;
+}
+.home{
+  display: flex;
+  text-align: center;
+  align-content: center;
+}
+.bigimage img{
+  height:575px;
+  width:850px;
+}
+small{
+  color: white;
+  word-spacing: 3px;
+}
+.regform{
+  width:100%;
+  height: auto;
+  padding-top:50px;
+  padding-bottom: 300px;
+  text-align: left;
+  padding-right:750px;
+  padding-left: 50px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+.logform{
+  width:100%;
+  height: auto;
+  padding-top:50px;
+  padding-bottom: 350px;
+  text-align: left;
+  padding-right:850px;
+  padding-left: 50px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+.formfoot{
+  display:flex;
+}
+.loginsec{
+  margin-left:10px;
+  padding-top:10px;
+}
+#dropwa{
+  width:550px;
+}
+.navbar-brand{
+  font-size: 30px;
+}
+.nav-link{
+  font-size: 20px;
+}
+.googlebutton{
+  width: 100px;
+  height: 40px;
+}
+.socialclass{
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (min-width: 400px) and (max-width: 650px) {
+  body{
+    overflow: scroll;
+  }
+  .logform{
+    width:100%;
+    height: auto;
+    padding-top:50px;
+    padding-bottom: 350px;
+    text-align: left;
+    padding-right:50px;
+    padding-left: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+  .regform{
+    width:100%;
+    height: auto;
+    padding-top:50px;
+    padding-bottom: 100px;
+    text-align: left;
+    padding-right:50px;
+    padding-left: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+  select{
+    height: 40px;
+    width:100%;
+    border-radius: 5px;
+    color:#696969;
+    padding-left: 10px;
+    font-size: 17px;
+  }
+  #dropwa{
+    width:100%;
+  }
+  .navbar-brand{
+    font-size: 25px;
+}
+.nav-link{
+    font-size: 15px;
+}
+  
+}
+@media only screen and (min-width: 651px) and (max-width: 700px) {
+  .logform{
+    width:100%;
+    height: auto;
+    padding-top:50px;
+    padding-bottom: 350px;
+    text-align: left;
+    padding-right:300px;
+    padding-left: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+  .regform{
+    width:100%;
+    height: auto;
+    padding-top:50px;
+    padding-bottom: 100px;
+    text-align: left;
+    padding-right:250px;
+    padding-left: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+  select{
+    height: 40px;
+    width:100%;
+    border-radius: 5px;
+    color:#696969;
+    padding-left: 10px;
+    font-size: 17px;
+  }
+  #dropwa{
+    width:100%;
+  }
+  .navbar-brand{
+    font-size: 25px;
+}
+.nav-link{
+    font-size: 15px;
+}
+}
+@media only screen and (min-width: 701px) and (max-width: 900px) {
+  .logform{
+    width:100%;
+    height: auto;
+    padding-top:50px;
+    padding-bottom: 350px;
+    text-align: left;
+    padding-right:300px;
+    padding-left: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+  .regform{
+    width:100%;
+    height: auto;
+    padding-top:50px;
+    padding-bottom: 100px;
+    text-align: left;
+    padding-right:350px;
+    padding-left: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+  select{
+    height: 40px;
+    width:100%;
+    border-radius: 5px;
+    color:#696969;
+    padding-left: 10px;
+    font-size: 17px;
+  }
+  #dropwa{
+    width:100%;
+  }
+  .navbar-brand{
+    font-size: 25px;
+}
+.nav-link{
+    font-size: 15px;
+}
+}
+@media only screen and (min-width: 901px) and (max-width: 1200px) {
+  .logform{
+    width:100%;
+    height: auto;
+    padding-top:50px;
+    padding-bottom: 350px;
+    text-align: left;
+    padding-right:450px;
+    padding-left: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+  .regform{
+    width:100%;
+    height: auto;
+    padding-top:50px;
+    padding-bottom: 100px;
+    text-align: left;
+    padding-right:450px;
+    padding-left: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
+  select{
+    height: 40px;
+    width:100%;
+    border-radius: 5px;
+    color:#696969;
+    padding-left: 10px;
+    font-size: 17px;
+  }
+  #dropwa{
+    width:100%;
+  }
+  .navbar-brand{
+    font-size: 25px;
+}
+.nav-link{
+    font-size: 15px;
+}
+}
