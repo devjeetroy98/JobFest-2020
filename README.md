@@ -3,7 +3,7 @@ A Job Portal Web App
 
 Video Link : https://www.linkedin.com/posts/devjeet-roy-219941170_nodejs-nodejsdeveloper-mongodb-activity-6702580544942739456-bD9x
 
-It is a web app where a person can register himself as an employer or employee.
+It is a web app where a person can register himself as an employer or employee to recruite candidates or to apply for jobs respectively.
 
 # As an employer, one will be able to:
 
@@ -23,3 +23,12 @@ It is a web app where a person can register himself as an employer or employee.
 4. Edit & write ones profile page!
 5. As many type one edits his profile, the CV gets generated & saved!(Old CV gets deleted for space management)
 6. Apply search queries based on the skills required for a job!
+
+# Home Page
+![Home Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/HomePage.PNG)
+
+# Registration Page
+![Register Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/RegistrationPage.PNG)
+
+# Login Page
+![Login Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/LoginPage.PNG)
