@@ -24,6 +24,13 @@ It is a web app where a person can register himself as an employer or employee t
 5. As many type one edits his profile, the CV gets generated & saved!(Old CV gets deleted for space management)
 6. Apply search queries based on the skills required for a job!
 
+# How to use :
+1. In terminal : npm install
+2. In terminal : mongostore
+3. In authmodel.js : Put your own email & password and activate this : https://myaccount.google.com/lesssecureapps
+4. In terminal : npm start
+5. In web browser : Go to localhost:3000/
+
 # Home Page
 ![Home Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/HomePage.PNG)
 
