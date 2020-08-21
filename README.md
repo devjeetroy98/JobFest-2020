@@ -1,5 +1,5 @@
 # JobFest
-A Job Portal Web App
+A Job Portal Web App made using Node.js, Express.js & MongoDB
 
 Video Link : https://www.linkedin.com/posts/devjeet-roy-219941170_nodejs-nodejsdeveloper-mongodb-activity-6702580544942739456-bD9x
 
