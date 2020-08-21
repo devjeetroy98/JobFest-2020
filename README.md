@@ -32,3 +32,28 @@ It is a web app where a person can register himself as an employer or employee t
 
 # Login Page
 ![Login Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/LoginPage.PNG)
+
+# Dashboard for Employers
+![Dash1 Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/PageEmployer.PNG)
+
+# Dashboard for Employees
+![Dash2 Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/PageEmployee.PNG)
+
+# Post Job by Employers Page
+![PostJob Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/PostJob.PNG)
+
+# See & delete posted jobs by Employers
+![PostedJob Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/PreviousPostedJobs.PNG)
+
+# See candidates/employees & download their CV which are auto generated when the employees fill up details for profile page
+![Canidates Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/SeeCandidates.PNG)
+
+# Find jobs for Employees
+![Findjob Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/AvailableJobs.PNG)
+
+# Profile details fill up by Employees
+Once the details are filled up, it can be updated & the CV gets updated accordingly!
+![Fillup Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/EmployeeDetailsFillup.PNG)
+
+# Feed
+![Feed Page](https://github.com/devjeetroy98/JobFest-2020/blob/master/snaps/ScrollableFeed.PNG)
