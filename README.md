@@ -2,6 +2,7 @@
 A Job Portal Web App made using Node.js, Express.js & MongoDB.
 
 Video Link : https://www.linkedin.com/posts/devjeet-roy-219941170_nodejs-nodejsdeveloper-mongodb-activity-6702580544942739456-bD9x
+Project URL : http://jobfest.herokuapp.com/
 
 It is a web app where a person can register himself as an employer or employee to recruite candidates or to apply for jobs respectively.
 
