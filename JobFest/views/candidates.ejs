@@ -8,6 +8,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/cand.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
     <title>Candidates || JobFest </title>
 </head>
 <body>
@@ -20,16 +21,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto" style="margin-right: 200px;">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/api/user/selection">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/api/user/selection">Dashboard</a>
+              <a class="nav-link" href="/api/user/feeds">Feeds</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/api/user/employer">Post Job</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us </a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,6 +40,9 @@
                 <center>
                   <form action="/api/user/logout" method="POST">
                     <button type="submit" class="btn btn-warning">Logout</button>           
+                  </form><br>
+                  <form action="/api/user/deleteaccount/<%= current_user.id %>" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>           
                   </form>
                 </center>
               </div>
@@ -48,7 +52,7 @@
       </nav>
       <div class="searchbox">
         <form class="form-inline my-2 my-lg-0" action="/api/user/candidates/search/" method="POST">
-          <input class="form-control mr-sm-2" type="search" placeholder="Job Role" aria-label="Search" id="search" name="skillsearch">
+          <input class="form-control mr-sm-2" type="search" placeholder="Job Role" aria-label="Search" id="search" name="skillsearch" value="<%= search %>" />
           <button class="btn btn-primary my-2 my-sm-0 searchbtn" type="submit" >Search</button>
         </form>
       </div> <br>
@@ -78,9 +82,12 @@
                 </div>
             </div>
         </div>      
-        <% }) %> <br>
+        <% }) %> <br><br>
+        <br>
+        <br>
+        <br>
       </div>
-      <footer style="height: 60px; background-color: #2E4053; text-align: center; padding-top: 10px; border-top-left-radius: 100px;border-top-right-radius: 100px; position: absolute; width: 100%;bottom: 0;" >
+      <footer>
         <style>.heart{color:#e25555;}</style>
         <p style="color: white; font-size: 20px;">Made with <span class="heart">❤</span> in India</p>
       </footer>

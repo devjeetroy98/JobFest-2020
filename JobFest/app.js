@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose')
 var session =require('express-session')
 var passport = require('passport')
-var flash = require('connect-flash')
+var flash = require('flash')
 const user = require('./schema/authSchema');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,7 +16,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var app = express();
 
 //Database connection
-mongoose.connect('mongodb://localhost:27017/jobfest',{
+mongoose.connect('mongodb+srv://DevjeetRoy:devjeetroy@21@cluster0.8lpn0.mongodb.net/jobfest?retryWrites=true&w=majority',{
   useUnifiedTopology: true,
   useFindAndModify: true,
   useNewUrlParser: true

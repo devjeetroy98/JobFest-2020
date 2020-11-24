@@ -5,51 +5,52 @@ const User = require('../schema/authSchema')
 const userData = require('../schema/userDataSchema')
 const jobData = require('../schema/jobSchema')
 const feedsData = require('../schema/feedsSchema');
-
+const { check, validationResult } 
+    = require('express-validator'); 
 const mongoose = require('mongoose');
 const fs = require("fs");
 const PDFDocument = require('pdfkit');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const nodemailer = require('nodemailer');
-const sharp = require("sharp");
+const flash = require('flash')
+var errors = []
 require('../passport')(passport);
-
+require('dotenv').config()
 
 exports.getRegisterPage = function(req,res,next){
     res.render('register');
 }
 
 exports.getLoginPage = function(req,res,next){
-    res.render('login');
+    res.render('login');      
 }
 
 exports.getSelectionPage = function(req,res,next){
     // console.log(req.user.email);
     User.findOne({email: req.user.email},(err, data)=>{
         if(data.usertype==="User"){
-            res.render('selection',{type: "User"});
+            res.render('selection',{type: "User", user:data});
         }
         if(data.usertype==="Admin"){
-            res.render('selection',{type: "Admin"});
+            res.render('selection',{type: "Admin", user:data});
         }
         else{
-            res.render('selection',{type: "User"});
+            res.render('selection',{type: "User", user:data});
         }
     })
 }
 exports.getJobpostPage = function(req,res,next){
-    res.render('employer')
+    res.render('employer',{user:req.user})
 }
 exports.getDashboardPage = function(req,res,next){
     userData.findOne({email: req.user.email},(err, data)=>{
         if(err) throw err
         if(data){
-            res.render('dashboard', {user: data});
+            res.render('dashboard', {user: data, current_user: req.user, errors:errors });
         }
         else{
-            console.log(req.user);
-            res.render('dashboard',{user: req.user})
+            res.render('dashboard',{user: req.user, current_user: req.user, errors:errors })
         }
     })
 }
@@ -87,7 +88,7 @@ exports.registerUser = function(req,res,next){
                             usertype
                         }).save((err, data) => {
                             if (err) throw err;
-                            // req.flash('success_message', "Registered Successfully.. Login To Continue..");
+                            req.flash('success', "User registered Successfully.");
                             res.redirect('/api/user/login');
                         });
                     });
@@ -118,6 +119,7 @@ exports.checkAuthenticated = function (req, res, next) {
 exports.logoutUser=function(req, res){
     if(req.user.usertype){
         req.logout();
+        req.flash('success', 'Successfully logged out!');
         res.redirect('/api/user/login');
     }
     else{
@@ -133,11 +135,13 @@ exports.logoutUser=function(req, res){
 // Profile data submission
 exports.submitProfile= function(req,res){
     var {_id, email, username, dob, yog, lastDegree, ylastDegree, jobrole, yoe, textpro, expectSal, genre} = req.body
-    // console.log(req.body)
-    // Submitting to database
-    if(!lastDegree && !yoe){
+    errors = validationResult(req); 
+    // If some error occurs, then this 
+    // block of code will run 
+    if (!errors.isEmpty()) { 
         res.redirect('/api/user/dashboard')
-    }
+    } 
+    else{
     userData.findOne({email: email},(err, data)=>{
         if (err) throw err
         if(data){
@@ -241,13 +245,13 @@ exports.submitProfile= function(req,res){
     }
     res.redirect('/api/user/profile');
 }
-
+}
 exports.getProfile = function(req,res){
     userData.findOne({email: req.user.email},(err, data)=>{
         // userData.findOne({email: req.params.email},(err, data)=>{
         if(err) throw err
         if(data){
-            res.render('profile', {user: data});
+            res.render('profile', {user: data, current_user: req.user});
         }
         else{
             res.redirect('/api/user/dashboard');
@@ -273,19 +277,19 @@ exports.submitJobData= function(req,res,next){
 exports.getCandidates= function(req,res,next){
     userData.find({},(err,datas)=>{
         if(err) throw err
-        res.render('candidates',{users: datas});
+        res.render('candidates',{users: datas, current_user: req.user, search: ""});
     });
 }
 exports.getJobs= function(req,res,next){
     jobData.find({},(err,datas)=>{
         if(err) throw err
-        res.render('jobspage',{jobs: datas});
+        res.render('jobspage',{jobs: datas, current_user: req.user, search: "" });
     });
 }
 exports.getPostedJobs = function(req,res,next){
     jobData.find({"PostedBy": req.user.email},(err,datas)=>{
         if(err) throw err
-        res.render('postedjobs',{jobs: datas});
+        res.render('postedjobs',{jobs: datas, current_user: req.user});
     });
 }
 exports.deleteJob = function(req,res,next){
@@ -301,8 +305,8 @@ exports.jobApply = function(req,res,next){
         let mailTransporter = nodemailer.createTransport({ 
             service: 'gmail', 
             auth: { 
-                user: 'xxxxxx@gmail.com', // Put your own email here and register yourself as Employee
-                pass: '****************'            // Your own email password & Enable 3rd Party Option
+                user: process.env.EMAIL, // Put your own email here and register yourself as Employee
+                pass: process.env.PASSWORD // Your own email password & Enable 3rd Party Option
             } 
         }); 
           
@@ -310,7 +314,7 @@ exports.jobApply = function(req,res,next){
             from: `${req.user.email}`, 
             to: `${data.contact}`, 
             subject: 'Applying for job in your esteemed company',
-            text: `Respected Sir,\n     I am ${req.user.username} would like to apply for the job of ${data.jobtitle} in your esteemed company ${data.company}. I have sufficient experience of working in the mentioned field. I would be highly grateful, if you give me a chance to interview.\nMy email: ${req.user.email}\n\nFrom,\nYours Sincerely,\n${req.user.username}`
+            text: `Respected Sir/Ma'am,\n     I am ${req.user.username} would like to apply for the job of ${data.jobtitle} in your esteemed company ${data.company}. I have sufficient experience of working in the mentioned field. I would be highly grateful, if you give me a chance to interview.\nMy email: ${req.user.email}\n\nFrom,\nYours Sincerely,\n${req.user.username}`
         }; 
           
         mailTransporter.sendMail(mailDetails, function(err, data) { 
@@ -326,13 +330,12 @@ exports.jobApply = function(req,res,next){
 }
 
 exports.searchJob = function(req,res,next){
-    jobskill = req.body.skillsearch
-    console.log(jobskill)
+    var jobskill = req.body.skillsearch
     if(jobskill){
         jobData.find({"skills":{$all:[`${jobskill}`]}},(err,datas)=>{
             if (err) throw err
             else{
-                res.render('jobspage',{jobs: datas});
+                res.render('jobspage',{jobs: datas, current_user: req.user, search:jobskill});
             }
         });
     }
@@ -341,13 +344,12 @@ exports.searchJob = function(req,res,next){
     }
 }
 exports.candsearch = function(req,res,next){
-    jobskill = req.body.skillsearch
-    console.log(jobskill)
+    var jobskill = req.body.skillsearch
     if(jobskill){
         userData.find({"genre":{$all:[`${jobskill}`]}},(err,datas)=>{
             if (err) throw err
             else{
-                res.render('candidates',{users: datas});
+                res.render('candidates',{users: datas, current_user: req.user, search: jobskill});
             }
         });
     }
@@ -369,7 +371,7 @@ exports.sendcv = function(req,res,next){
 exports.sendFeeds = function(req,res,next){
    feedsData.find().where().sort("-timesort2").exec((err,datas)=>{
        if(err) throw err
-        res.render('feeds', {feeds : datas, username: req.user.username});
+        res.render('feeds', {feeds : datas, username: req.user.username, userid: req.user.id, type: req.user.usertype });
    });  
 }
 
@@ -380,4 +382,14 @@ exports.deleteFeed = function(req,res,next){
             res.redirect('/api/user/feeds/');
         }
     });
+}
+
+exports.deleteaccount = function(req,res,next){
+    User.findByIdAndDelete(req.params.id, (err,data)=>{
+        if (err) throw err
+        else{
+            req.flash('success',"Account deleted successfully!");
+            res.redirect('/api/user/register')
+        }
+    })
 }

@@ -6,7 +6,8 @@ const feedsSchema = new mongoose.Schema({
         required: true
     },
     time:{
-        type: String,
+        type: Date,
+        default: new Date(),
         required: true
     },
     timesort2:{
@@ -15,9 +16,6 @@ const feedsSchema = new mongoose.Schema({
     content:{
         type: String,
         required: true
-    },
-    linkpic:{
-        type: String,
     },
     uppic:{
         type: String,

@@ -1,29 +1,22 @@
 body {
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
     overflow: hidden;
+    margin:0;
     background: url('/images/jobfind.jpg') repeat no-repeat center fixed;
     background-size: cover;
 }
-.navbar-brand{
-    font-size: 30px;
-}
-.nav-link{
-    font-size: 20px;
-}
 .mainpanel{
-    padding-top:90px;
-    margin-top: 70px;
-    background: rgba(0, 0, 0, 0.6);
-    height: 100%;
+    padding-top:160px;
+    background: rgba(0, 0, 0, 0.7);
     text-align: center;
-    height: 300px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin: 0px;
+    width: 100%;
     padding-left:50px;
     padding-right: 50px;
+    padding-bottom: 100%;
 }
 #reg{
-    width: 60px;
+    width:60px;
     color: white;
     text-decoration: none;
     font-size: 25px;
@@ -59,16 +52,24 @@ body {
     color: white;
     font-size: 30px;
   }
-@media only screen and (min-width: 250px) and (max-width: 780px) {
+@media only screen and (min-width: 350px) and (max-width: 600px) {
+    body {
+        font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+        overflow: hidden;
+        margin:0;
+        background: url('/images/jobfind.jpg') repeat no-repeat center fixed;
+        background-size: cover;
+    }
     .mainpanel{
-        padding-top:70px;
-        margin-top: 0px;
-        height: 800px;
+        padding-top:160px;
+        background: rgba(0, 0, 0, 0.7);
         text-align: center;
-        margin-left: 0px;
-        margin-right: 0px;
-        padding-left:20px;
-        padding-right: 20px;
+        height: auto;
+        width: 100%;
+        padding-left:50px;
+        padding-right: 50px;
+        padding-bottom: 100%;
+        margin: 0px;
     }
     .typed-cursor {
         color: white;
@@ -100,11 +101,5 @@ body {
         margin-top: 20px;
         padding: 10px;
         background-color: white;
-    }
-    .navbar-brand{
-        font-size: 25px;
-    }
-    .nav-link{
-        font-size: 15px;
     }
 }

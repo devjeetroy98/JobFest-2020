@@ -8,6 +8,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style2.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
     <title>Personal Details || JobFest </title>
 </head>
 <body>
@@ -20,16 +21,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto" style="margin-right: 200px;">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us </a>
+              <a class="nav-link" href="/api/user/selection">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/api/user/profile">Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/api/user/jobs">Jobs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us </a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,42 +40,59 @@
                 <center>
                   <form action="/api/user/logout" method="POST">
                     <button type="submit" class="btn btn-warning">Logout</button>           
+                  </form><br>
+                  <form action="/api/user/deleteaccount/<%= current_user.id %>" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>           
                   </form>
                 </center>
               </div>
             </li>
           </ul>
-          <!-- <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form> -->
         </div>
       </nav>
       <div class="profileform">
-        <!-- <h1>Welcome <%= user.username %></h1> -->
-        <!-- <h2>Your email id is: <%= user.email %></h2> -->
+        <% try { errors = errors.errors   %>
+        <% } catch(e) { errors = [] } %>
         <form action="/api/user/submit" method="POST">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="<%= user.email %>">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="<%= user.email %>" required readonly>
+            <% try {   %>
+            <% for(var i=0; i< errors.length; i++) { %>
+                <%  if(errors[i].param == 'email') {   %>
+                <p class="text-danger"><%= errors[i].msg %></p>
+              <% }} %>
+              <% } catch(e) {  } %>
             <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
               <label for="exampleInputEmail1">Username</label>
-              <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="username" value="<%= user.username  %>">
+              <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="username" value="<%= user.username  %>" required readonly>
           </div>
-          <div class="form-group">
+          <div class="form-group"> 
             <label for="exampleInputEmail1">Date of Birth</label>
-            <input type="date" class="form-control" id="exampleInputUsername" aria-describedby="" name="dob" placeholder="MM/DD/YYYY" value="<%= user.dob ? user.dob : ''  %>">
+            <input type="date" class="form-control" id="exampleInputUsername" aria-describedby="" name="dob" placeholder="YYYY" value="<%= user.dob ? user.dob : ''  %>">
+            <% try {   %>
+            <% for(var i=0; i< errors.length; i++) {  %>
+                <%  if(errors[i].param == 'dob') {  %>
+                <p class="text-danger"><%= errors[i].msg %></p>
+              <% }} %>
+              <% } catch(e) {  } %>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Year of Graduation</label>
             <input type="date" class="form-control" id="exampleInputUsername" aria-describedby="" name="yog" placeholder="MM/DD/YYYY" value="<%= user.yog ? user.yog : ''  %>">
+            <% try {   %>
+              <% for(var i=0; i< errors.length; i++) { %>
+                <%  if(errors[i].param == 'yog') { %>
+                <p class="text-danger"><%= errors[i].msg %></p>
+              <% }} %>
+            <% } catch(e) {}%> 
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Last Degree</label><br>
             <select name="lastDegree" id="">
-              <option value="<%= user.lastDegree ? user.lastDegree : ''  %>"  selected><%= user.lastDegree ? user.lastDegree : 'Select your degree'  %></option>
+              <option value="<%= user.lastDegree ? user.lastDegree : ''  %>"  selected ><%= user.lastDegree ? user.lastDegree : 'Select your degree'  %></option>
               <option value="B.Tech">B.Tech</option>
               <option value="B.Sc">B.Sc</option>
               <option value="B.C.A.">B.C.A.</option>
@@ -85,14 +103,32 @@
               <option value="M.B.A.">M.B.A.</option>
               <option value="Diploma">Diploma</option>
             </select>
+            <% try {  %>
+              <% for(var i=0; i< errors.length; i++) { %>
+                <%  if(errors[i].param == 'lastDegree') { %>
+                <p class="text-danger"><%= errors[i].msg %></p>
+              <% }} %>
+            <% } catch(e) {}%>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Year of last degree</label>
             <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="ylastDegree" value="<%= user.ylastDegree ? user.ylastDegree : ''  %>">
+            <% try {   %>
+              <% for(var i=0; i< errors.length; i++) { %>
+                <%  if(errors[i].param == 'ylastDegree') { %>
+                <p class="text-danger"><%= errors[i].msg %></p>
+              <% }} %>
+            <% } catch(e) {}%>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Job Role</label>
             <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="jobrole" value="<%= user.jobrole ? user.jobrole : ''  %>">
+            <% try {    %>
+              <% for(var i=0; i< errors.length; i++) { %>
+                <%  if(errors[i].param == 'jobrole') { %>
+                <p class="text-danger"><%= errors[i].msg %></p>
+              <% }} %>
+            <% } catch(e) {}%>
           </div>
           <div class="form-group" id="mycheck">
             <label for="exampleInputEmail1">Genre of experience</label><br>
@@ -153,7 +189,12 @@
             <input type="checkbox" id="Cloud Computing" name="genre" value="Cloud Computing" <%= checked %>>
             <label for="genre7">Cloud Computing</label><br>
             
-
+            <% try {  %>
+              <% for(var i=0; i< errors.length; i++) { %>
+                <%  if(errors[i].param == 'genre') { %>
+                <p class="text-danger"><%= errors[i].msg %></p>
+              <% }} %>
+            <% } catch(e) {}%>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Years Of Experience</label><br>
@@ -167,14 +208,32 @@
               <option value="5">5 years of experience</option>
               <option value="5+">5+ years of experience</option>
             </select>
+            <% try {  %>
+              <% for(var i=0; i< errors.length; i++) { %>
+                <%  if(errors[i].param == 'yoe') { %>
+                <p class="text-danger"><%= errors[i].msg %></p>
+              <% }} %>
+            <% } catch(e) {}%>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Profile Text</label>
             <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="textpro" placeholder="Few lines about your work ethic" value="<%= user.textpro %>">
+            <% try {  %>
+              <% for(var i=0; i< errors.length; i++) { %>
+                <%  if(errors[i].param == 'textpro') { %>
+                <p class="text-danger"><%= errors[i].msg %></p>
+              <% }} %>
+            <% } catch(e) {}%>
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Expected Salary</label>
-            <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="expectSal" placeholder="Your expected salary!" value=<%= user.expectSal %>>
+            <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="" name="expectSal" placeholder="Your expected salary!" value="<%= user.expectSal %>">
+            <% try { %>
+              <% for(var i=0; i< errors.length; i++) { %>
+                <%  if(errors[i].param == 'expectSal') { %>
+                <p class="text-danger"><%= errors[i].msg %></p>
+              <% }} %>
+            <% } catch(e) {}%>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>

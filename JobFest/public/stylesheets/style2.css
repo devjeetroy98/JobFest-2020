@@ -26,20 +26,20 @@ select{
   .nav-link{
     font-size: 20px;
   }
-@media only screen and (min-width: 400px) and (max-width: 650px) {
+@media only screen and (min-width: 350px) and (max-width: 650px) {
     .profileform{
         width:100%;
         height: auto;
         padding-top:50px;
         padding-bottom:50px;
         text-align: left;
-        padding-right:50px;
+        padding-right:55px;
         padding-left: 50px;
         background: rgba(0, 0, 0, 0.7);
         color: white;
     }
     .profileform input, select{
-        width: 300px;
+        width: 100%;
     }
     #mycheck input{
         width: 17px;

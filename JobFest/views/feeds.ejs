@@ -13,38 +13,50 @@
     <title>Feeds || JobFest </title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">JobFest</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto" style="margin-right: 200px;">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/api/user/selection">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Settings
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <center>
-                  <form action="/api/user/logout" method="POST">
-                    <button type="submit" class="btn btn-warning">Logout</button>           
-                  </form>
-                </center>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">JobFest</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto" style="margin-right: 200px;">
+        <li class="nav-item active">
+          <a class="nav-link" href="/api/user/selection">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/user/feeds">Feeds</a>
+        </li>
+        <% if(type=="Admin"){ %>
+        <li class="nav-item">
+          <a class="nav-link" href="/api/user/candidates">Candidates</a>
+        </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/api/user/profile">Profile</a>
+          </li>
+        <% } %>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Settings
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <center>
+              <form action="/api/user/logout" method="POST">
+                <button type="submit" class="btn btn-warning">Logout</button>           
+              </form><br>
+              <form action="/api/user/deleteaccount/<%= userid %>" method="POST">
+                <button type="submit" class="btn btn-danger">Delete</button>           
+              </form>
+            </center>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
       <div class="feedpost">
         <a href="#" id="myBtn">Write an article<i class="fas fa-camera" style="float: right; padding-right: 30px; padding-top: 5px;"></i></a>
       </div><br>
@@ -58,9 +70,7 @@
         <div class="modal-body">
             <form action="/api/user/feed/upload" method="post" class="modalform" enctype="multipart/form-data">
                 <textarea id="" cols="160" rows="6" placeholder="Write something here ..." name="content"></textarea><br>
-                <label for="write">Enter link of image: </label>
-                <input type="text" name="linkpic" id="write" placeholder="Post the link of image..."><br>
-                <h4 style="text-align: center;margin-top:10px; margin-bottom: 10px;">OR</h4>
+                <label for="uppic">Upload Image: </label>
                 <input type="file" name="uppic" id="uploadbtn"><br>
                 <input type="submit" value="Submit" class="btn btn-danger" style="float: right; margin-bottom: 10px;">
             </form>
@@ -71,14 +81,13 @@
         <% if(feeds[0]) {%>
           <% feeds.forEach(feed =>{ %>
             <div class="block1">
-                <span><b  style="text-align: left;"><%= feed.author %></b> <%= feed.time %></span><br>
+                <span><b  style="text-align: left;"><%= feed.author %></b> <span class="datetime"><%= feed.time.getDay() %>/<%= feed.time.getMonth() %>/<%= feed.time.getFullYear() %> -- <%= feed.time.getHours() %>:<%= feed.time.getMinutes() %> </span></span><br>
                 <h6><%= feed.content %></h6>
-                <a href="#">Click here to read ...</a> <br><br>
                 <% if(feed.uppic) { %>
                     <img src="/uploads/<%= feed.uppic %>" alt="Image" srcset="">
-                <% } else{ %>
-                <img src=<%= feed.linkpic %>" alt="Image" srcset="">
-                <% } %>
+                <% } else { %>
+                  <span></span>
+                  <% } %>
                 <% if(username == feed.author) {%>
                 <form action="/api/user/feed/delete/<%= feed._id %>" method="POST" style="margin-top: 1vh;">
                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>

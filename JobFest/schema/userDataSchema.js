@@ -11,10 +11,11 @@ const userdata = new mongoose.Schema({
     },
     dob:{
         type: String,
-        minlength: 6
+        required: true,
     },
     yog:{
         type: String,
+        required: true,
     },
     lastDegree:{
         type: String,

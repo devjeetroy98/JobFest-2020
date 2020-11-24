@@ -21,14 +21,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto" style="margin-right: 200px;">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/api/user/selection">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/user/feeds">Feeds</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact Us </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/api/user/selection">Dashboard</a>
-              </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Settings
@@ -37,26 +37,29 @@
                 <center>
                   <form action="/api/user/logout" method="POST">
                     <button type="submit" class="btn btn-warning">Logout</button>           
+                  </form><br>
+                  <form action="/api/user/deleteaccount/<%= current_user.id %>" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>           
                   </form>
                 </center>
               </div>
             </li>
           </ul>
         </div>
-      </nav>
+      </nav><br>
       <div style="height: auto;">
         <% if(!jobs[0]) {%>
         <center><p style="margin-top: 20px;"><b>No Job avaliable at this moment!</b></p></center>
         <% } %>
         <% jobs.forEach(job=>{ %>
-        <div class="box" style="display: flex; margin-top: 5px;">
-            <div style="width: 450px; padding-right: 10px;">
+        <div class="box">
+            <div class="box1">
                 <p><b>Job title:</b> <%= job.jobtitle %></p>
                 <p><b>Company:</b> <%= job.company %></p>
                 <p><b>Skills Required:</b> <%= job.skills %></p>
                 <p><b>Qualification Required:</b> <%= job.aq %></p>
             </div>
-            <div style="margin-left: 30px; padding-right: 20px;;">
+            <div class="box2">
               <% if(job.exp !== "Fresher") {%>
                 <p><b>Experience Required:</b> Minimum <%= job.exp %> years</p>
               <% } else { %> 
@@ -66,12 +69,12 @@
                 <p><b>Contact:</b> <%= job.contact %></p>
             </div>
             <form action="/api/user/delete/<%= job._id %>" method="POST">
-                <button type="submit" class="btn btn-danger" id="apply">Delete</button>
-            </form>
+                <button type="submit" class="btn btn-danger" id="deletebtn">Delete</button>
+            </form><br>
         </div>      
         <% }) %>
       </div><br>
-      <footer style="height: 60px; background-color: #2E4053; text-align: center; padding-top: 10px; border-top-left-radius: 100px;border-top-right-radius: 100px;; width: 100%;bottom: 0;position: fixed;z-index: 999;" >
+      <footer>
         <style>.heart{color:#e25555;}</style>
         <p style="color: white; font-size: 20px;">Made with <span class="heart">❤</span> in India</p>
       </footer>

@@ -1,5 +1,6 @@
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    margin:0;
 }
 .profileform{
     width:100%;
@@ -24,9 +25,9 @@ body {
   .nav-link{
     font-size: 20px;
   }
-@media only screen and (min-width: 400px) and (max-width: 650px) {
+@media only screen and (min-width: 350px) and (max-width: 650px) {
     .profileform{
-        width:100%;
+        width: auto;
         height: auto;
         padding-top:50px;
         padding-bottom:50px;
@@ -37,7 +38,7 @@ body {
         color: white;
     }
     .profileform input, select{
-        width: 350px;
+        width: 100%;
     }
     .navbar-brand{
         font-size: 25px;

@@ -1,7 +1,7 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
-  background: url('/images/jobfind.jpg');
+  background: url('/images/jobfind.jpg') repeat no-repeat center fixed;
   background-size: cover;
 }
 
@@ -17,6 +17,15 @@ a:hover{
   display: flex;
   text-align: center;
   align-content: center;
+}
+.dp{
+  text-align: center;
+  padding-bottom: 30px;
+}
+.dp> img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
 }
 .bigimage img{
   height:575px;
@@ -58,12 +67,6 @@ small{
 #dropwa{
   width:550px;
 }
-.navbar-brand{
-  font-size: 30px;
-}
-.nav-link{
-  font-size: 20px;
-}
 .googlebutton{
   width: 100px;
   height: 40px;
@@ -72,9 +75,18 @@ small{
   display: flex;
   justify-content: space-between;
 }
-@media only screen and (min-width: 400px) and (max-width: 650px) {
+@media only screen and (min-width: 350px) and (max-width: 650px) {
   body{
-    overflow: scroll;
+    overflow: hidden;
+  }
+  .dp{
+    text-align: center;
+    padding-bottom: 30px;
+  }
+  .dp> img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
   }
   .logform{
     width:100%;
@@ -108,14 +120,7 @@ small{
   }
   #dropwa{
     width:100%;
-  }
-  .navbar-brand{
-    font-size: 25px;
-}
-.nav-link{
-    font-size: 15px;
-}
-  
+  }  
 }
 @media only screen and (min-width: 651px) and (max-width: 700px) {
   .logform{
@@ -151,12 +156,6 @@ small{
   #dropwa{
     width:100%;
   }
-  .navbar-brand{
-    font-size: 25px;
-}
-.nav-link{
-    font-size: 15px;
-}
 }
 @media only screen and (min-width: 701px) and (max-width: 900px) {
   .logform{
@@ -192,12 +191,6 @@ small{
   #dropwa{
     width:100%;
   }
-  .navbar-brand{
-    font-size: 25px;
-}
-.nav-link{
-    font-size: 15px;
-}
 }
 @media only screen and (min-width: 901px) and (max-width: 1200px) {
   .logform{
@@ -233,10 +226,4 @@ small{
   #dropwa{
     width:100%;
   }
-  .navbar-brand{
-    font-size: 25px;
-}
-.nav-link{
-    font-size: 15px;
-}
 }

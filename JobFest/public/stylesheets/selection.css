@@ -23,7 +23,17 @@ body{
 .talkingtoemployer > p{
     font-size: 25px;
 }
-@media only screen and (min-width: 300px) and (max-width: 650px) {
+footer{
+    height: 60px;
+    background-color: #2E4053;
+    text-align: center;
+    padding-top: 10px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    position: fixed; width: 100%;
+    bottom: 0;
+}
+@media only screen and (min-width: 350px) and (max-width: 650px) {
     .talkingtoemployer{
         margin-left: 40px;
         margin-right: 40px;
@@ -35,6 +45,16 @@ body{
     }
     .talkingtoemployer > p{
         font-size: 15px;
+    }
+    footer{
+        height: 40px;
+        background-color: #2E4053;
+        text-align: center;
+        padding-top: 5px;
+        border-top-left-radius: 100px;
+        border-top-right-radius: 100px;
+        position: fixed; width: 100%;
+        bottom: 0;
     }
 }
 @media only screen and (min-width: 651px) and (max-width: 900px) {

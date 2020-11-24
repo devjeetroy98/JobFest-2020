@@ -10,6 +10,7 @@ body{
 }
 .box{
     border: 1px solid #333;
+    height: auto;
     text-align: left;
     margin-left: 250px;
     margin-right: 250px;
@@ -23,8 +24,13 @@ body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 #apply{
-    margin-right: 10px;
+    float: right;
+    margin-right:15px;
     margin-top: 150px;
+}
+#deletebtn{
+    float: right;
+    margin-right:15px;
 }
 .searchbox{
     margin-top: 10px;
@@ -45,7 +51,18 @@ body{
     background: #DCDCDC;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);  
 }
-@media only screen and (min-width: 400px) and (max-width: 650px) {
+footer{
+    height: 60px;
+    background-color: #2E4053;
+    text-align: center;
+    padding-top: 10px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+}
+@media only screen and (min-width: 350px) and (max-width: 650px) {
     body{
         margin: 0;
         padding: 0;
@@ -56,6 +73,7 @@ body{
     }
     .box{
         border: 1px solid #333;
+        height: auto;
         text-align: left;
         margin-left: 20px;
         margin-right: 20px;
@@ -75,18 +93,26 @@ body{
         padding: 0;
     }
     #apply{
-        margin-left:-120px;
-        margin-top:250px;
+        float: right;
+        margin-right:15px;
+        margin-top: 0px;
     }
-    .navbar-brand{
-        font-size: 25px;
+    #deletebtn{
+        float: right;
+        margin-right:15px;
     }
-    .nav-link{
-        font-size: 15px;
+    footer{
+        height: 40px;
+        background-color: #2E4053;
+        text-align: center;
+        padding-top: 5px;
+        border-top-left-radius: 100px;
+        border-top-right-radius: 100px;
+        width: 100%;
+        bottom: 0;
     }
-    
 }
-@media only screen and (min-width: 651px) and (max-width: 900px) {
+@media only screen and (min-width: 651px) and (max-width: 1300px) {
     body{
         margin: 0;
         padding: 0;
@@ -107,31 +133,18 @@ body{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
     #apply{
-        margin-left:-100px;
-        margin-top:160px;
+        float: right;
+        margin-right:15px;
+        margin-top: 0px;
     }
-    .navbar-brand{
-        font-size: 25px;
-    }
-    .nav-link{
-        font-size: 15px;
+    #deletebtn{
+        float: right;
+        margin-right:15px;
     }
     .searchbox{
         margin-top: 10px;
         margin-left: 50px;
         margin-right: 50px;
         padding: 0;
-    }
-}
-@media only screen and (min-width: 900px) {
-    #apply{
-        margin-left:-80px;
-        margin-top:190px;
-    }
-    .navbar-brand{
-        font-size: 25px;
-    }
-    .nav-link{
-        font-size: 15px;
     }
 }

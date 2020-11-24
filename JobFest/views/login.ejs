@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/f3f0e4dcd7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
     <title>Login || JobFest </title>
 </head>
 <body>
@@ -37,20 +38,28 @@
         </div>
       </nav>
       <div class="logform">
-        <% if(error != '') {%>
-          <div class="alert alert-danger" role="alert">
-            <%= error %>
+        <div class="dp">
+          <img src="/images/profilepic.png" alt="Profile" srcset="">
+        </div>
+        <% if(flash[flash.length-1].message !== undefined ) { %>
+          <% type = flash[flash.length-1].type ? flash[flash.length-1].type : 'danger' %>
+          <% console.log(type) %>
+          <div class="alert alert-<%= type %>" role="alert">
+            <%= flash[flash.length-1].message %>
           </div>
+        <% } else { %>
+          <span></span>
         <% } %>
+        <% flash[flash.length-1].message = undefined %>
         <form action="/api/user/login" method="POST">
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="example@gmail.com">
+              <!-- <label for="exampleInputEmail1">Email address</label> -->
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="E-mail">
               <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Your-Password">
+              <!-- <label for="exampleInputPassword1">Password</label> -->
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
             </div>
             <div class="formfoot">
               <div class="submitsec">

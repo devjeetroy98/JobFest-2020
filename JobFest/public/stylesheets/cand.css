@@ -65,12 +65,22 @@ body{
     color: white;
     text-decoration: none;
 }
+footer{
+    height: 60px;
+    background-color: #2E4053;
+    text-align: center;
+    padding-top: 10px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    position: fixed; width: 100%;
+    bottom: 0;
+}
 @media only screen and (min-width: 300px) and (max-width: 650px) {
     .box{
         border: 1px solid #333;
         text-align: left;
-        margin-left: 50px;
-        margin-right: 50px;
+        margin-left: 20px;
+        margin-right: 20px;
         padding-left: 20px;
         padding-right: 20px;
         padding-top: 20px;
@@ -83,11 +93,13 @@ body{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
     }
     .box1{
-        width: 350px;
-        padding-right: 10px;
+        width: auto;
+        word-wrap: break-word;        
     }
     .box2{
         margin-left:0px;
+        width: auto;
+        word-wrap: break-word; 
     }
     .navbar-brand{
         font-size: 25px;
@@ -97,8 +109,8 @@ body{
     }
     .searchbox{
         margin-top: 10px;
-        margin-left: 50px;
-        margin-right: 50px;
+        margin-left: 20px;
+        margin-right: 20px;
         padding: 0;
     }
     #search{
@@ -107,7 +119,16 @@ body{
         border: none;
         background: #DCDCDC;
     }
-    
+    footer{
+        height: 40px;
+        background-color: #2E4053;
+        text-align: center;
+        padding-top: 5px;
+        border-top-left-radius: 100px;
+        border-top-right-radius: 100px;
+        position: fixed; width: 100%;
+        bottom: 0;
+    }
 }
 @media only screen and (min-width: 651px) and (max-width: 1200px) {
     .box{
