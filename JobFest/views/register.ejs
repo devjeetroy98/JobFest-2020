@@ -42,9 +42,9 @@
             <div class="alert alert-<%= flash[flash.length-1].type %>" role="alert">
               <%= flash[flash.length-1].message %>
             </div>
-          <% } else { %>
+          <% } else {%>
             <span></span>
-          <% } %>
+            <% } %>
           <% flash[flash.length-1].message = undefined %>
           <form action="/api/user/register" method="POST">
               <div class="form-group">

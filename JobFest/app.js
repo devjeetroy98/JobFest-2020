@@ -16,12 +16,12 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var app = express();
 
 //Database connection
-mongoose.connect('mongodb+srv://DevjeetRoy:devjeetroy@21@cluster0.8lpn0.mongodb.net/jobfest?retryWrites=true&w=majority',{
+mongoose.connect('mongodb://127.0.0.1:27017/jobfest',{
   useUnifiedTopology: true,
   useFindAndModify: true,
   useNewUrlParser: true
 }).then(()=>{
-  console.log("Database connected!");
+  console.log("Database connected!!");
 }).catch((err)=>{
   console.log("Error occured: "+err);
 })

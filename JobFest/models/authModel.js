@@ -15,6 +15,7 @@ const passport = require('passport');
 const nodemailer = require('nodemailer');
 const flash = require('flash')
 var errors = []
+var err = ""
 require('../passport')(passport);
 require('dotenv').config()
 
@@ -66,14 +67,15 @@ exports.registerUser = function(req,res,next){
     }
     if (password != confirmpassword) {
         err = "Passwords Don't Match";
+        req.flash('warning', err);
         res.render('register', { 'err': err, 'email': email, 'username': username });
     }
     if (typeof err == 'undefined') {
         User.findOne({ email: email }, function (err, data) {
             if (err) throw err;
             if (data) {
-                console.log("User Exists");
                 err = "User Already Exists With This Email...";
+                req.flash('warning', err);
                 res.render('register', { 'err': err, 'email': email, 'username': username });
             } else {
                 bcrypt.genSalt(10, (err, salt) => {
@@ -305,8 +307,8 @@ exports.jobApply = function(req,res,next){
         let mailTransporter = nodemailer.createTransport({ 
             service: 'gmail', 
             auth: { 
-                user: process.env.EMAIL, // Put your own email here and register yourself as Employee
-                pass: process.env.PASSWORD // Your own email password & Enable 3rd Party Option
+                user: "devjeetroy.dr@gmail.com", // Put your own email here and register yourself as Employee
+                pass: "DevjeetRoy@21" // Your own email password & Enable 3rd Party Option
             } 
         }); 
           
